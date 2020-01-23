@@ -1,0 +1,25 @@
+private constructor is off course to restrict instantiation of the class.
+
+Actually a good use of private constructor is in Singleton Pattern. here's an example
+
+public class ClassicSingleton {
+   private static ClassicSingleton instance = null;
+   private ClassicSingleton() {
+      // Exists only to defeat instantiation.
+   }
+   public static ClassicSingleton getInstance() {
+      if(instance == null) {
+         instance = new ClassicSingleton();
+      }
+      return instance;
+   }
+}
+this way you can ensure that only one instance of class is active.
+
+Other uses can be to create a utility class, that only contains static methods.
+
+
+private constructor cant be inherited.so if a class extends another class having private constructor so u cant create an object of b(INHERITED CLASS) and access method of class A which has private constructor since it restricts instantiation.
+so B is A (is A relation)
+B b=new B();
+b.call() not possible compiler error. call() is in class A which has private constructor... we can make the method static and call
