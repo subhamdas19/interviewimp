@@ -1,0 +1,14 @@
+
+
+
+take set and put array elements of one array
+now traverese through another array and check if its there or not...if its there...vommon element
+
+
+
+one more soln
+sort the two arrays
+the similar soln to if(a [i] <b[j]) i++
+if(b[j]<a[i]) . j++
+if(a[i]==b[j])
+common
