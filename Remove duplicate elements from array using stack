@@ -1,0 +1,11 @@
+1 2 3 1 2
+output 3
+
+
+
+sort it
+use 2 stacks
+insert all elements in one stack
+
+in second stack
+check if element in second stack..if no put it...now next element from first stack,if its there in second stack,pop the top of both stacks...continue like this until u get only no repeated elements in stack
