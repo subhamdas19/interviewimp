@@ -1,0 +1,162 @@
+public class SecurityPolicyEntity {
+
+    private Long policyId;
+    private String passwordComplexity;
+    private Integer passwordExpiryPeriod;
+    private Integer maxFailedLoginAttempts;
+    private Integer passwordUnlockPeriod;
+    private Integer maxInactiveSessionPeriod;
+
+    private Integer passwordHistoryCount;
+
+    private Integer lockPeriod;
+
+    private Integer lockingWindowPeriod;
+
+    private Integer sessionTimeout;
+
+    private Integer tokenTimeOutPeriod;
+    
+    
+public class UserEntity {
+
+
+    @BsonId
+    private Long userId;
+
+    private String firstName;
+
+    private String lastName;
+
+    private String userType;
+
+    private ApiUserEntity apiUser;
+
+    private PortalUserEntity portalUser;
+
+    private String status;
+
+    private Long orgId;
+
+    private Long mnoOrgId;
+
+    private Integer roleId;
+
+    private Integer failedLoginAttempts;
+
+    private Date lastFailedLoginTime;
+
+    private Date lastLoginAttemptTime;
+
+    private Date passwordExpiryTime;
+
+    private String localTimeZone;
+
+    private Boolean showConfirmationMessages;
+
+    private AuditInfoEntity auditInfo;
+
+    public Date lastSuccessfulLoginTime;
+    @BsonProperty
+    private List<UserPreferenceEntity> preferences;
+    }
+    
+    first gets the user entity based on email id,then we get the security policy entity object based on orgId
+    now if last login time it failed,then it gets the calender instance with that timee...and the user status is locked it it. failed during login....now if we login again...and see that user status is locked and current time is greater than last login failed time thenset the user status to activated.
+    
+    
+    and if there is no last login failed time,
+    set userEntity.setLastLoginAttemptTime(CommonUtil.getISO8601FormatDate(new Date()));
+    now we need to check if the user exists...so we have UsernamePasswordAuthenticationToken Class (default)
+    public class UsernamePasswordAuthenticationToken extends AbstractAuthenticationToken
+    we have a constructor here
+    
+    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                        loginRequest.getEmail(), loginRequest.getPassword(), new ArrayList<>());
+    
+     public UsernamePasswordAuthenticationToken(Object principal, Object credentials, Collection<? extends GrantedAuthority> authorities) {
+        super(authorities);
+        this.principal = principal;
+        this.credentials = credentials;
+        super.setAuthenticated(true);
+    }
+now inAuthenticationManger class we have authenticate method which takes this. usernamePasswordAuthenticationToken as input and authenticates it and returns an authentication object and SecurityContextHolder.getContext().setAuthentication(authentication); and user exists
+    now if user exists,we generate token using SecureRandom(). ....and then for the expiry time we take the current date when we create user session object,there we set the expiry time and add minutes to it in calender instance using session time out which queries for sessiontime out in configuration collection.
+    sets lastSuccessful login time
+    public static String generateToken() {
+        byte[] bytes = new byte[32];
+        try {
+            SecureRandom random = new SecureRandom();
+            random.nextBytes(bytes);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
+        return Base64.getEncoder().encodeToString(bytes);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public boolean checkUserExists(LoginRequest loginRequest, UserEntity userEntity) throws RSMException {
+        boolean userExist = false;
+        Authentication authentication;
+        try {
+            if (!Objects.isNull(loginRequest) && null != loginRequest.getEmail() && null != loginRequest.getPassword()) {
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+                        loginRequest.getEmail(), loginRequest.getPassword(), new ArrayList<>());
+                userLoginService.setLoginRequestObj(loginRequest);
+                authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+                logger.info("Logging in with{}", usernamePasswordAuthenticationToken.getPrincipal());
+                if (null != authentication && authentication.isAuthenticated()) {
+                    userExist = true;
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    throw new RSMException(RSMStatusCodeEnum.INVALID_USERNAME_OR_PASSWORD.statusCode);
+                }
+            }
+    
+    
+    
+    if (null != userEntity.getLastFailedLoginTime()) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(userEntity.getLastFailedLoginTime());
+                calendar.add(Calendar.MINUTE, securityPolicyEntity.getLockPeriod());
+                if (userEntity.getStatus().equals(UserStatus.Locked.name()) && calendar.getTime().before(new Date())) {
+                    userEntity.setFailedLoginAttempts(0);
+                    userEntity.setStatus(UserStatus.Activated.name());
+                }
+            }
+            userEntity.setLastLoginAttemptTime(CommonUtil.getISO8601FormatDate(new Date()));
+            updateUserEntity(userEntity);
+            logger.info("userId{}", userEntity.getUserId());
+            List<Long> orgIds = orgRepository.getListSubOrgId(orgEntity.getOrgId());
+            if (userEntity.getOrgId().equals(loginRequest.getOrgId()) ||
+                    (!CollectionUtils.isEmpty(orgIds)
+                            && orgIds.contains(userEntity.getOrgId()))) {
+                isValidUser = checkUserExists(loginRequest, userEntity);
+                if (isValidUser) {
+                    logger.info("{}", "User Valid Proceed to login");
+                    String token = TokenManager.generateToken();
+                    UserSession userSession = createUserSessionObject(userEntity, orgEntity, token);
+                    saveUserSession(userSession);
+                    Date tokenExpiry = userSession.getExpiryTime();
+                    Integer sessionTimeOut = getSessionTimeOutforOrgId(userEntity.getMnoOrgId(), orgEntity.getOrgType());
+                    if (null != tokenExpiry && null != sessionTimeOut) {
+                        Calendar calendarExpiry = Calendar.getInstance();
+                        calendarExpiry.setTime(tokenExpiry);
+                        calendarExpiry.add(Calendar.MINUTE, sessionTimeOut);
+                        userSession.setExpiryTime(calendarExpiry.getTime());
+                    }
+                    loginResponse = loginResponseObject(userEntity, userSession);
+                    userEntity.setLastSuccessfulLoginTime(CommonUtil.getISO8601FormatDate(new Date()));
+                    userEntity.setFailedLoginAttempts(0);
+                    updateUserEntity(userEntity);
+                }
+            } else {
+                throw new RSMException(RSMStatusCodeEnum.ACCESS_DENIED.statusCode);
+            }
