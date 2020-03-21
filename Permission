@@ -1,0 +1,5 @@
+
+
+boolean hasPermission(Authentication var1, Serializable var2, String var3, Object var4);
+when a user logs in with this token in api,it checks the permissions with this authentication object
+@PreAuthorize("hasPermission(#orgId, T(com.gigsky.raptor.rsm.common.constant.PermissionEnum).RSMGETTRANSACTIONANALYTICS.toString())")
