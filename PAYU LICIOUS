@@ -1,0 +1,22 @@
+
+PAYU interview questions
+
+1.Internal working of hashmap
+what is microservice
+features of microservices
+@Controller vs @Restcontroller
+What is REST,FEATURES
+can we use @Controller instead of @RestController
+Using Tries with telephone nos
+Real life multithreading eg
+how to stop threads from interfering with each other(Synchronization)
+Segregation of 0s and 1s in an array where they are placed randomly(put 0S ON 1 side and 1s on other side
+Features of Java 8
+
+
+LICIOUS Interview questions
+1.asked questions on token expiry permission security user session object
+2.Find the length of longest valid substring
+3.Difference between no sql and sql
+4.how TO JOIN TWO COLLECTIONS IN MONGOdb
+5.FIND THE list of students who have the 5th best score(SQL Query)here we can use RANK()table has student names and score
