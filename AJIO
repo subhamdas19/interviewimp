@@ -1,0 +1,10 @@
+tell various oops concepts
+explain abstraction encapsulation inheritance with examples
+explain abstract classes and inheritance with example
+what is == and equals()
+is hashcode() used for only hashmap?
+what is object class?different methods in object class
+can we ovverride equals,finalize()
+what is finalize()
+write the code how to override equals()(see geeks for geeks)
+what is string pool explain why it is used and why immutable
