@@ -1,0 +1,17 @@
+what is @Transactional annotation in Spring
+Two levels of cache in hibernate
+what is seesion and session factory
+what is optimistic and pessimistic locking in hibernate
+what is async template(Spring)
+internal working of hashmap
+Upto java 8,we used linked list to store the entry obkects and to search in linked list its o(n)
+in java 9 what is used?(Red black tree)
+Explain collision in hashmap
+spring boot(latest version)
+PUT vs POST
+Find elements in array such that a+b=c+d;
+Find the no of ways to reach nth stair (fibonacci recursive + using temporary variables a,b,c)+dynamic programming
+(totally 3 solns)
+No of ways to reach nth floor by taking almost K steps(cost to reach nth step by taking 1 or 2 steps) soln is there
+by taking k steps...not there
+what if k steps at a time?
