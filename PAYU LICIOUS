@@ -28,3 +28,29 @@ prometheus also
 can private methods be overriden?
 check whether a singly linked list is palindrome or not
 find the left view of binary tree
+
+
+3rd round
+1.Why is java platform independent?
+2.What is JVM?Explain the architecture of JVM
+Explain classLoader...execution steps too
+why u chose java
+is java object oriented programming
+what is spring
+why not hibernate with java instead of spring
+what is private constructor
+why we use
+how do we create object of a class if we have private constructor
+what are access modifiers
+explain all
+difference between static void main() and public static void main()
+can we declare a constructor final
+why no?
+what is final
+what are different types pf constructor
+does constructor returns a value
+what happens when we type url in browser
+different design patterns
+print 100 nos sum
+
+
