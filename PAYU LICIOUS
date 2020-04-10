@@ -54,3 +54,11 @@ different design patterns
 print 100 nos sum
 
 
+
+AFFLE 1ST ROUND
+1.Find the nth node from end of linked list
+2.Find the maximum product of two nos in array(nega,negb,posa,posb)
+3.given  a pointer to node in linked list,delete it(a case where it does not work,when the node is last of linked list)
+4.Find the row with max no of 1s in 2d array
+
+
