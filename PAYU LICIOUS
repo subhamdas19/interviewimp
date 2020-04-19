@@ -61,4 +61,10 @@ AFFLE 1ST ROUND
 3.given  a pointer to node in linked list,delete it(a case where it does not work,when the node is last of linked list)
 4.Find the row with max no of 1s in 2d array
 
+2ND ROUND
+1.In a BST,find the pair with the given sum
+2.Design a stack that supports getMin() in O(1) time and O(1) extra space
+3.Design and Implement Special Stack Data Structure | Added Space Optimized Version
+4.ABCDE/Y=YABCDE
+
 
