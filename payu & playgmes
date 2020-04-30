@@ -1,0 +1,35 @@
+payu 3 rd round
+1.What is REST.What are the advantages of REST.Explain REST architecture.Explain caching in REST .Why stateless.Diagram of REST.
+what is main?what is public static void main(string[] args),can main() be overloaded.what is method overloading,method overriding
+can main() be overriden,can static methods be overriden.method hiding.
+what is spring.advantages of spring.explain how spring boot automatically configures(spring boot starter dependency).how does emebedded tomcat server works in spring boot.
+how does the war files get deployed in tomcat etc.
+wgat is difference between application server and web server.tomcat is which server?
+why mongodb and not cassandra
+what are the different types of collections
+what is set
+different types of set.real eg of set.what is sorted set.how to do in descending (some fn,descendingSet())
+
+Playgames 1st round
+1.What are the feautures of Java 8.write a lamda function to add two nos using java 8.functional interface
+2.what is oops in java.asked about inheritance,abstraction,polymorphism,encapsulation.
+what is abstract class and interface.differnece between them and when to use both and real life eg of abstract class
+difference between arraylist and linkredlist.when to use.different tpes of list
+how arraylist grows dynamically.
+explain working of hashmap and hashset
+what is kafka,explain group id and partition
+boundary traversal of tree
+what is dependency injection
+
+
+VMWARE
+1.difference between arrayList a=new arrayList();
+list a =new arraylist():ans:u can change the implementation throughout the program
+
+write a multithreaded program to add two nos using 7 threads and 100 jobs,.eed to use threadpool
+ways of process communications
+string pool
+spring advantages
+what is dependency injection
+largest 10 elements
+autowiring
