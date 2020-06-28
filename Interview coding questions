@@ -29,3 +29,5 @@ public class Solution {
 Time complexity : O(n)O(n). Only one iteration over the numsnums array of length nn is required.
 
 Space complexity : O(1)O(1). Constant extra space is used.
+
+https://www.geeksforgeeks.org/segregate-0s-and-1s-in-an-array-by-traversing-array-once/
