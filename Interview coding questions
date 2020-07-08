@@ -36,4 +36,75 @@ https://www.geeksforgeeks.org/frequent-element-array/
 https://www.geeksforgeeks.org/move-zeroes-end-array/
 https://www.geeksforgeeks.org/reverse-individual-words/
 https://www.geeksforgeeks.org/pangram-checking/
+https://www.geeksforgeeks.org/print-string-after-removing-all-10-or-01-from-the-binary-string/
+https://www.geeksforgeeks.org/find-minimum-depth-of-a-binary-tree/
+and return the node at minimum depth  https://www.geeksforgeeks.org/print-leaf-nodes-at-a-given-level/
+
+
+ Remove All Adjacent Duplicates In String
+Easy
+
+735
+
+60
+
+Add to List
+
+Share
+Given a string S of lowercase letters, a duplicate removal consists of choosing two adjacent and equal letters, and removing them.
+
+We repeatedly make duplicate removals on S until we no longer can.
+
+Return the final string after all such duplicate removals have been made.  It is guaranteed the answer is unique.
+
+ 
+
+Example 1:
+
+Input: "abbaca"
+Output: "ca"
+Explanation: 
+For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
+
+class Solution {
+    public String removeDuplicates(String S) {
+        Stack<Character> st=new Stack<>() ;
+        for(int i=0;i<S.length();i++){
+            char ch=S.charAt(i) ;
+            if(st.size()==0||st.peek()!=ch){
+                st.push(ch) ;
+            }
+            else st.pop() ;
+        }
+        String str="" ;
+        while(st.size()>0){
+            char ch=st.pop() ;
+            str=ch +str;
+        }
+    
+        return str ;
+    }
+}
+Convert uppercase to lowercase and vice versa without using functions
+public class Main {
+    static String LowerToUpper(String s) {
+        String result = "";
+        char ch = ' ';
+        for (int i = 0; i < s.length(); i++) {
+            
+            //check valid alphabet and it is in lowercase
+            if (s.charAt(i) >= 'a' && s.charAt(i) <= 'z') {
+                ch = (char)(s.charAt(i) - 32);
+            }
+            //else keep the same alphabet or any character
+            else {
+                ch = (char)(s.charAt(i));
+            }
+            
+            result += ch; // concatenation, append c to result
+        }
+        return result;
+    }
+    
+    and upper to lower is +32
 
