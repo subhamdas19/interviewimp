@@ -5,6 +5,9 @@ take set and put array elements of one array
 now traverese through another array and check if its there or not...if its there...vommon element
 
 
+https://www.geeksforgeeks.org/java-program-to-find-common-elements-between-two-arrays/
+
+
 
 one more soln
 sort the two arrays
@@ -12,3 +15,144 @@ the similar soln to if(a [i] <b[j]) i++
 if(b[j]<a[i]) . j++
 if(a[i]==b[j])
 common
+
+
+Using Hashsets:
+
+By using the retainAll() method of the HashSet we can find the common elements between two arrays.
+
+
+Syntax: 
+
+// This method keeps only the common elements
+// of both Collection in Collection1.
+
+Collections1.retainAll(Collections2)
+
+Approach : 
+
+    Get the two Arrays.
+    Create two hashsets and add elements from arrays tp those sets.
+    Find the common elements in both the sets using Collection.retainAll() method. This method keeps only the common elements of both Collection in Collection1.
+    Set 1 now contains the common elements only.
+
+Below is the implementation of the above approach:
+
+// Java Program to find common elements
+// in two Arrays using hashsets
+// and retainAll() method
+import java.io.*;
+import java.util.*;
+ 
+class GFG {
+ 
+    // function to create hashsets
+    // from arrays and find
+    // their common element
+    public static void FindCommonElements(int[] arr1,
+                                          int[] arr2)
+    {
+        // create hashsets
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+ 
+        // Adding elements from array1
+        for (int i : arr1) {
+            set1.add(i);
+        }
+ 
+        // Adding elements from array2
+        for (int i : arr2) {
+            set2.add(i);
+        }
+ 
+        // use retainAll() method to
+        // find common elements
+        set1.retainAll(set2);
+        System.out.println("Common elements- " + set1);
+    }
+ 
+    // main method
+    public static void main(String[] args)
+    {
+        // create Array 1
+        int[] arr1
+            = { 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 };
+ 
+        // create Array 2
+        int[] arr2 = { 100, 9, 64, 7, 36, 5, 16, 3, 4, 1 };
+ 
+        // print Array 1
+        System.out.println("Array 1: "
+                           + Arrays.toString(arr1));
+        // print Array 2
+        System.out.println("Array 2: "
+                           + Arrays.toString(arr2));
+        FindCommonElements(arr1, arr2);
+    }
+}
+Output
+
+Array 1: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+Array 2: [100, 9, 64, 7, 36, 5, 16, 3, 4, 1]
+Common elements- [16, 64, 1, 4, 36, 100, 9]
+
+Time Complexity: O(n)                                                                                                                                   
+Using HashSet:
+
+Approach:
+
+1. Add all elements of first array into a hashset.
+
+2. Iterate the second array and check whether element present in hashset using contains method. If contains == true, add the element to result in array.
+
+Below is the implementation of the above approach:
+
+// Java program for the above approach
+import java.io.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+ 
+class Test {
+ 
+    private static void findCommonElements(int[] arr1,
+                                           int[] arr2)
+    {
+         
+        // Check if length of arr1 is greater than 0
+        // and length of arr2 is greater than 0
+        if (arr1.length > 0 && arr2.length > 0) {
+            Set<Integer> firstSet = new HashSet<Integer>();
+            for (int i = 0; i < arr1.length; i++) {
+                firstSet.add(arr1[i]);
+            }
+           
+            // Iterate the elements of the arr2
+            for (int j = 0; j < arr2.length; j++) {
+                if (firstSet.contains(arr2[j])) {
+                    System.out.println(arr2[j]);
+                }
+            }
+        }
+    }
+   
+    // Driver Code
+    public static void main(String[] args)
+    {
+        int[] arr1 = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+        int[] arr2 = new int[] { 1, 3, 4, 5, 6, 9, 8 };
+       
+        // Function Call
+        findCommonElements(arr1, arr2);
+    }
+}
+Output
+
+1
+3
+4
+5
+6
+
+Time Complexity: O(n)
