@@ -1,5 +1,10 @@
 payu 3 rd round
 1.What is REST.What are the advantages of REST.Explain REST architecture.Explain caching in REST .Why stateless.Diagram of REST.
+
+https://www.geeksforgeeks.org/rest-api-introduction/
+https://www.geeksforgeeks.org/why-rest-api-is-important-to-learn/
+
+
 what is main?what is public static void main(string[] args),can main() be overloaded.what is method overloading,method overriding
 can main() be overriden,can static methods be overriden.method hiding.
 what is spring.advantages of spring.explain how spring boot automatically configures(spring boot starter dependency).how does emebedded tomcat server works in spring boot.
