@@ -75,6 +75,10 @@ Tomcat application server
 
 
 why mongodb and not cassandra
+https://phoenixnap.com/kb/cassandra-vs-mongodb
+https://scalegrid.io/blog/cassandra-vs-mongodb/
+
+
 what are the different types of collections
 what is set
 different types of set.real eg of set.what is sorted set.how to do in descending (some fn,descendingSet())
