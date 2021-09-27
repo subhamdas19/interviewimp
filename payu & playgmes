@@ -19,6 +19,7 @@ https://www.geeksforgeeks.org/understanding-public-static-void-mainstring-args-i
 can main() be overriden,can static methods be overriden.method hiding.
 https://www.geeksforgeeks.org/can-we-overload-or-override-static-methods-in-java/
 https://www.baeldung.com/java-variable-method-hiding
+https://www.scientecheasy.com/2020/08/method-hiding-in-java.html/
 
 
 what is spring.advantages of spring.explain how spring boot automatically configures(spring boot starter dependency).how does emebedded tomcat server works in spring boot.
